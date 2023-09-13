@@ -34,7 +34,7 @@ int main()
     concatFunc concatenacion = reinterpret_cast<concatFunc>(GetProcAddress(mydll, "concatenacion"));
     if (concatenacion != NULL)
     {
-        std::cout << "prueba de concatenacion \n" << concatenacion("Hola", "ojo", "ojoooooooo") << "\n";
+        std::cout << "prueba de concatenacion: " << concatenacion("Hola", "ojo", "ojoooooooo") << "\n";
     }
 
     FreeLibrary(mydll);
