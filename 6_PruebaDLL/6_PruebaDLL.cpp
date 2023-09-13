@@ -34,20 +34,11 @@ int main()
     concatFunc concatenacion = reinterpret_cast<concatFunc>(GetProcAddress(mydll, "concatenacion"));
     if (concatenacion != NULL)
     {
-        std::cout << "prueba de concatenacion " << concatenacion("Hola", "ojo", "ojoooooooo") << "\n";
+        std::cout << "prueba de concatenacion \n" << concatenacion("Hola", "ojo", "ojoooooooo") << "\n";
     }
 
     FreeLibrary(mydll);
 
     puts("hola");
     return 0;
-
-
-
-    typedef std::string(*ConcatenarFunc)(const std::string& A, const std::string& B);
-    ConcatenarFunc concatenar = reinterpret_cast<ConcatenarFunc>(GetProcAddress(mydll, "Concatenar"));
-    if (concatenar != NULL)
-    {
-        std::cout << "Concatenacion: " << concatenar("Hola, ", "mundo") << "\n";
-    }
 }
