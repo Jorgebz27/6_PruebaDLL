@@ -30,18 +30,24 @@ int main()
         std::cout << "prueba de suma " << sumar(3.1416, 23456) << "\n";
     }
 
-    typedef std::string* (*concatFunc)(std::string * A, std::string * B, std::string * C);
+    typedef std::string(*concatFunc)(const std::string& A, const std::string& B, const std::string& C);
     concatFunc concatenacion = reinterpret_cast<concatFunc>(GetProcAddress(mydll, "concatenacion"));
     if (concatenacion != NULL)
     {
-        std::string A = "Hola";
-        std::string B = "Hola";
-        std::string C = "Hola";
-        std::cout << "prueba de concatenacion " << concatenacion(A, B, C) << "\n";
+        std::cout << "prueba de concatenacion " << concatenacion("Hola", "ojo", "ojoooooooo") << "\n";
     }
 
     FreeLibrary(mydll);
 
     puts("hola");
     return 0;
+
+
+
+    typedef std::string(*ConcatenarFunc)(const std::string& A, const std::string& B);
+    ConcatenarFunc concatenar = reinterpret_cast<ConcatenarFunc>(GetProcAddress(mydll, "Concatenar"));
+    if (concatenar != NULL)
+    {
+        std::cout << "Concatenacion: " << concatenar("Hola, ", "mundo") << "\n";
+    }
 }
